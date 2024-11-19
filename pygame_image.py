@@ -11,13 +11,14 @@ def main():
     clock  = pg.time.Clock()                      # クロックの生成（p.58）
     bg_img = pg.image.load("fig/pg_bg.jpg")           # 背景画像surfaceを作成（p.61）
     kk_img = pg.image.load("fig/3.png")               # 背景画像surfaceを作成（p.61）
-    kk_img = pg.transform.flip(bg_img, True, False)      # 画像を反転（p.61）
+    kk_img = pg.transform.flip(kk_img, True, False)      # 画像を反転（p.61）
     tmr = 0
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
 
         screen.blit(bg_img, [0, 0])           # screen Surfaceに背景描画surfaceを貼り付ける（p.53）
+        screen.blit(kk_img, [300, 200])       # screen Surfaceに背景描画surfaceを貼り付ける（p.53）
         pg.display.update()
         tmr += 1        
         clock.tick(10)
