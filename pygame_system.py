@@ -26,7 +26,8 @@ def main():
         screen.blit(enn, [100, 400])
         pg.display.update()
         tmr += 1        
-        clock.tick(10)
+        #clock.tick(10)  # １秒当たりにn回ループする
+        clock.tick(0.1)
 
 
 if __name__ == "__main__":
