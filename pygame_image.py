@@ -17,7 +17,7 @@ def main():
         for event in pg.event.get():
             if event.type == pg.QUIT: return
 
-        screen.blit(bg_img, [0, 0])           # screen Surfaceに背景描画surfaceを貼り付ける（p.53）
+        screen.blit(bg_img, [-tmr, 0])           # screen Surfaceに背景描画surfaceを貼り付ける（p.53）tmrを入れると背景が左にスクロールする（p.61）
         screen.blit(kk_img, [300, 200])       # screen Surfaceにこうかとんsurfaceを貼り付ける（p.53）
         pg.display.update()
         tmr += 1        
