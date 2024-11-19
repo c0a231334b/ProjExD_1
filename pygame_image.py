@@ -16,20 +16,29 @@ def main():
     kk_rct = kk_img.get_rect()        
     kk_rct.center = 300, 200                # こうかとんrectを取得する（p.50）
     tmr = 0
+
+
+
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
 
-        kk_rct.move_ip(-1, 0)
+        
         key_lst = pg.key.get_pressed()        # キー入力を取得（p.62）
-        if key_lst[pg.K_UP]:                  # 上矢印キーが押されている場合
-            kk_rct.move_ip(0, -1)             # 左上に移動
-        if key_lst[pg.K_DOWN]:                # 上矢印キーが押されている場合
-            kk_rct.move_ip(0, +1)             # 左下に移動
-        if key_lst[pg.K_LEFT]:                # 左矢印キーが押されている場合
-            kk_rct.move_ip(-1, 0)             # 左に移動
-        if key_lst[pg.K_RIGHT]:               # 右矢印キーが押されている場合
-            kk_rct.move_ip(+2, 0)             # 右に移動
+
+        k_x = 0
+        k_y = 0
+
+        if key_lst[pg.K_UP]:                    # 上矢印キーが押されている場合
+            k_y = -1
+        elif key_lst[pg.K_DOWN]:                # 下矢印キーが押されている場合
+            k_y = 1
+        elif key_lst[pg.K_LEFT]:                # 左矢印キーが押されている場合
+            k_x = -1
+        elif key_lst[pg.K_RIGHT]:               # 右矢印キーが押されている場合
+            k_x = 2
+
+        kk_rct.move_ip(k_x - 1, k_y)            # 移動
 
         x = -(tmr % 3200) #練習6-2（p.67）
         screen.blit(bg_img,  [x, 0])           # screen Surfaceに背景描画surfaceを貼り付ける（p.53）tmrを入れると背景が左にスクロールする（p.61）
