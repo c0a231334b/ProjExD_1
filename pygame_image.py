@@ -6,19 +6,25 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 
 def main():
-    pg.display.set_caption("はばたけ！こうかとん")  # ウィンドウのタイトル（p.53）Surfaceを作成
-    screen = pg.display.set_mode((800, 600))      # ウィンドウのサイズ（p.49）
-    clock  = pg.time.Clock()                      # クロックの生成（p.58）
+    pg.display.set_caption("はばたけ！こうかとん")      # ウィンドウのタイトル（p.53）Surfaceを作成
+    screen = pg.display.set_mode((800, 600))          # ウィンドウのサイズ（p.49）
+    clock  = pg.time.Clock()                          # クロックの生成（p.58）
     bg_img = pg.image.load("fig/pg_bg.jpg")           # 背景画像surfaceを作成（p.61）
+    bg_img2 = pg.transform.flip(bg_img, True, False)      # 背景画像surfaceを作成（p.61）
     kk_img = pg.image.load("fig/3.png")               # こうかとんsurfaceを作成（p.61）
-    kk_img = pg.transform.flip(kk_img, True, False)      # 画像を反転（p.61）
+    kk_img = pg.transform.flip(kk_img, True, False)   # 画像を反転（p.61）
+    kk_rct = kk_img.get_rect()                        # こうかとんrectを取得する（p.50）
     tmr = 0
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
 
-        x = tmr % 800
-        screen.blit(bg_img, [-x, 0])           # screen Surfaceに背景描画surfaceを貼り付ける（p.53）tmrを入れると背景が左にスクロールする（p.61）
+        x = -(tmr % 3200) #練習6-2（p.67）
+        screen.blit(bg_img,  [x, 0])           # screen Surfaceに背景描画surfaceを貼り付ける（p.53）tmrを入れると背景が左にスクロールする（p.61）
+        screen.blit(bg_img2, [x + 1600, 0])
+        screen.blit(bg_img,  [x + 3200, 0])
+        screen.blit(bg_img2, [x + 4800, 0])
+
         screen.blit(kk_img, [300, 200])       # screen Surfaceにこうかとんsurfaceを貼り付ける（p.53）
         pg.display.update()
         tmr += 1        
